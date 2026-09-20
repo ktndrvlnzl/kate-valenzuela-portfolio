@@ -2,7 +2,7 @@
 
 My personal portfolio website. I'm a student developer from the Philippines working toward a future in Security Engineering, and this site collects the projects I've built while learning.
 
-**Live site:** https://ktndrvlnzl.github.io/kate-valenzuela-portfolio/
+**Live site:** https://kate-valenzuela-portfolio.vercel.app/
 
 ## About the site
 
