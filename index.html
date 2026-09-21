@@ -286,7 +286,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.12;letter
 /* ==========================================================
    Skills
    ========================================================== */
-.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.skills-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
 .skill-panel{
   padding:clamp(22px,3vw,34px);border-radius:16px;
   border:1px solid var(--line);
@@ -301,11 +301,12 @@ h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.12;letter
   transition:border-color .25s, background-color .25s, transform .25s var(--ease);
 }
 .tag--using{background:rgba(137,49,104,.17);border-color:rgba(137,49,104,.6)}
+.tag--familiar{background:rgba(234,234,234,.04)}
 .tag--learning{border-style:dashed;color:#d3cdd1}
 @media (hover:hover){
   .tag:hover{transform:translateY(-2px);border-color:var(--accent-soft)}
 }
-@media (max-width:820px){.skills-grid{grid-template-columns:1fr}}
+@media (max-width:980px){.skills-grid{grid-template-columns:1fr}}
 
 /* ==========================================================
    Projects
@@ -392,20 +393,20 @@ h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.12;letter
   background:linear-gradient(var(--accent),var(--accent-soft));
   box-shadow:0 0 12px rgba(137,49,104,.7);
 }
-.route-stop{position:relative;padding:18px 0;counter-increment:stop;display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+.route-stop{position:relative;padding:12px 0;counter-increment:stop;display:flex;align-items:baseline;justify-content:space-between;gap:16px}
 .route-stop::before{
-  content:"";position:absolute;left:-49px;top:26px;width:14px;height:14px;border-radius:50%;
+  content:"";position:absolute;left:-49px;top:15px;width:14px;height:14px;border-radius:50%;
   background:var(--bg);border:2px solid var(--line-strong);
   transition:background-color .4s, border-color .4s, box-shadow .4s;
 }
 .route-stop.is-reached::before{border-color:var(--accent-soft)}
 .route-stop[data-state="using"].is-reached::before{background:var(--accent);box-shadow:0 0 0 5px rgba(137,49,104,.22)}
 .route-stop[data-state="goal"].is-reached::before{border-color:var(--text);box-shadow:0 0 0 5px rgba(234,234,234,.1)}
-.route-stop h3{font-size:1.3rem;font-weight:500;color:var(--muted);transition:color .4s}
+.route-stop h3{font-size:1.15rem;font-weight:500;color:var(--muted);transition:color .4s}
 .route-stop h3::before{content:counter(stop);display:inline-block;min-width:1.6em;font-size:.9rem;color:var(--muted);opacity:.7}
 .route-stop.is-reached h3{color:var(--text)}
 .route-stop small{font-size:.88rem;color:var(--muted);white-space:nowrap}
-.route-stop[data-state="goal"] h3{font-size:1.45rem}
+.route-stop[data-state="goal"] h3{font-size:1.25rem}
 
 @media (max-width:820px){
   .path-grid{grid-template-columns:1fr}
@@ -415,7 +416,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.12;letter
 /* ==========================================================
    Career direction
    ========================================================== */
-.career-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:c}
+.career-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;counter-reset:c}
 .career-step{
   position:relative;padding:22px 24px 22px 0;
   border-top:1px solid var(--line-strong);
@@ -429,11 +430,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.12;letter
 .career-step:last-child::after{display:none}
 .career-step:last-child{border-top-color:var(--accent)}
 .career-step:last-child h3{color:var(--accent-soft)}
-.career-note{
-  margin-top:36px;max-width:62ch;padding:18px 22px;
-  border:1px dashed var(--line-strong);border-radius:12px;
-  color:var(--muted);font-size:1rem;
-}
+.career-note{margin-top:28px;max-width:62ch;color:var(--muted);font-size:.98rem}
 @media (max-width:820px){
   .career-steps{grid-template-columns:1fr}
   .career-step{padding:18px 0 18px 26px;border-top:none;border-left:1px solid var(--line-strong)}
@@ -539,6 +536,57 @@ h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.12;letter
   .js [data-reveal]{opacity:1;transform:none}
   .route-pulse{display:none}
 }
+
+/* ==========================================================
+   Update: privacy pass, client-ready copy, projects emphasis
+   ========================================================== */
+.section--compact{padding-block:clamp(56px,7vw,88px)}
+.section--compact .section-head h2,
+.section--compact .path-intro h2{font-size:clamp(1.5rem,3vw,2rem)}
+.section--compact .section-head{margin-bottom:28px}
+
+/* Hero: what I can help with, at a glance */
+.hero-offers{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;animation:fade .8s .6s both}
+.hero-offers li{
+  padding:5px 12px;border:1px solid var(--line-strong);border-radius:999px;
+  font-size:.88rem;color:#d3cdd1;line-height:1.35;
+}
+
+/* Projects: the star of the page */
+.section--star{
+  background:radial-gradient(ellipse 60% 38% at 50% 0%,rgba(74,25,66,.38),transparent 70%),var(--bg);
+}
+.section--star .section-head h2{font-size:clamp(2.1rem,4.6vw,3.1rem)}
+.section--star .projects-grid{gap:26px}
+.section--star .project h3{font-size:1.6rem}
+.section--star .project-body{padding:26px 26px 28px}
+
+.project{position:relative}
+.project::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .4s;
+  background:radial-gradient(300px circle at var(--mx,50%) var(--my,50%),rgba(137,49,104,.17),transparent 70%);
+}
+.project-body{position:relative}
+@media (hover:hover){.project:hover::before{opacity:1}}
+
+.project--featured{border-color:rgba(137,49,104,.55)}
+.badge{
+  position:absolute;top:12px;left:12px;z-index:2;
+  padding:4px 10px;border-radius:999px;
+  border:1px solid rgba(137,49,104,.75);background:rgba(5,4,4,.78);
+  color:var(--accent-soft);font-size:.78rem;line-height:1.3;
+}
+.project-note{margin-top:14px;color:var(--muted);font-size:.9rem}
+
+/* Services call to action */
+.services-cta{margin-top:40px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;color:var(--muted)}
+
+/* Leadership: what each area shows */
+.lead-builds{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);color:var(--accent-soft);font-size:.92rem}
+
+@media (max-width:820px){
+  .services-cta .btn{width:100%}
+}
 </style>
 </head>
 
@@ -566,8 +614,8 @@ h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.12;letter
     </button>
     <nav class="nav-links" id="navLinks" aria-label="Main">
       <a href="#about">About</a>
-      <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
       <a href="#services">Services</a>
       <a href="#leadership">Leadership</a>
       <a href="#contact">Contact</a>
@@ -588,7 +636,13 @@ h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.12;letter
       </h1>
       <p class="hero-role">Student Developer <span class="sep" aria-hidden="true">|</span> Aspiring Security Engineer</p>
       <p class="hero-intro">I build useful things, learn how they work, and turn ideas into working projects.</p>
-      <p class="hero-sub">Currently exploring Computer Science, cybersecurity, and the path toward Security Engineering.</p>
+      <p class="hero-sub">Currently developing my skills in Computer Science and cybersecurity, with Security Engineering as my long-term direction.</p>
+      <ul class="hero-offers" aria-label="What I can help with">
+        <li>Websites</li>
+        <li>Python projects</li>
+        <li>Writing &amp; proofreading</li>
+        <li>Simple design</li>
+      </ul>
       <div class="hero-actions">
         <a class="btn btn--primary" href="#projects">View My Work
           <svg class="i i-down" aria-hidden="true"><use href="#i-down"/></svg>
@@ -639,13 +693,12 @@ h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.12;letter
     </div>
     <div class="about-grid">
       <div class="about-text" data-reveal>
-        <p>I'm a Grade 10 student at King's Way Christian Academy in the Philippines with a growing interest in Computer Science and cybersecurity. I'm currently working toward a future in Security Engineering, where I want to build secure systems, understand how networks and software work, and solve technical problems.</p>
+        <p>I'm a student developer in the Philippines with a growing interest in Computer Science and cybersecurity. I'm currently working toward a future in Security Engineering, where I want to build secure systems, understand how networks and software work, and solve technical problems.</p>
         <p>I enjoy building projects from scratch, learning through experimentation, and turning random ideas into things I can actually use. I'm currently developing my skills in Python, Git and GitHub, Linux, networking, web development, and cybersecurity fundamentals.</p>
       </div>
       <dl class="facts" data-reveal style="--d:120ms">
-        <div class="fact"><dt>Student</dt><dd>Grade 10</dd></div>
+        <div class="fact"><dt>Role</dt><dd>Student Developer</dd></div>
         <div class="fact"><dt>Location</dt><dd>Philippines</dd></div>
-        <div class="fact fact--wide"><dt>School</dt><dd>King's Way Christian Academy</dd></div>
         <div class="fact"><dt>Field</dt><dd>Computer Science / Cybersecurity</dd></div>
         <div class="fact"><dt>Goal</dt><dd>Security Engineering</dd></div>
       </dl>
@@ -653,48 +706,8 @@ h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.12;letter
   </div>
 </section>
 
-<!-- ======================= SKILLS ======================= -->
-<section class="section section--lift" id="skills">
-  <div class="container">
-    <div class="section-head" data-reveal>
-      <h2>Skills</h2>
-      <p>Solid outlines are what I build with today. Dashed outlines are what I'm working on next.</p>
-    </div>
-    <div class="skills-grid">
-      <article class="skill-panel" data-reveal>
-        <h3>Currently Using</h3>
-        <p>Tools and languages behind my projects.</p>
-        <ul class="tags">
-          <li class="tag tag--using">Python</li>
-          <li class="tag tag--using">HTML</li>
-          <li class="tag tag--using">CSS</li>
-          <li class="tag tag--using">JavaScript</li>
-          <li class="tag tag--using">Git</li>
-          <li class="tag tag--using">GitHub</li>
-          <li class="tag tag--using">Tkinter</li>
-          <li class="tag tag--using">JSON</li>
-        </ul>
-      </article>
-      <article class="skill-panel" data-reveal style="--d:100ms">
-        <h3>Currently Learning</h3>
-        <p>Foundations I'm building toward Security Engineering.</p>
-        <ul class="tags">
-          <li class="tag tag--learning">Linux</li>
-          <li class="tag tag--learning">Computer Networking</li>
-          <li class="tag tag--learning">C</li>
-          <li class="tag tag--learning">SQL</li>
-          <li class="tag tag--learning">Bash</li>
-          <li class="tag tag--learning">Data Structures and Algorithms</li>
-          <li class="tag tag--learning">Cybersecurity Fundamentals</li>
-          <li class="tag tag--learning">Web Security</li>
-        </ul>
-      </article>
-    </div>
-  </div>
-</section>
-
 <!-- ======================= PROJECTS ======================= -->
-<section class="section" id="projects">
+<section class="section section--star" id="projects">
   <div class="container">
     <div class="section-head" data-reveal>
       <h2>Things I've Built</h2>
@@ -703,8 +716,38 @@ h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.12;letter
 
     <div class="projects-grid">
 
+      <!-- Project 4: Lockbox -->
+      <article class="project project--featured" data-reveal>
+        <div class="preview"><span class="badge">Closest to my cybersecurity direction</span><div aria-hidden="true" style="height:100%">
+          <svg viewBox="0 0 320 168" preserveAspectRatio="xMidYMid slice">
+            <rect class="panel" x="60" y="34" width="200" height="100" rx="12"/>
+            <rect class="dim" x="76" y="50" width="168" height="34" rx="8"/>
+            <g fill="#EAEAEA">
+              <circle cx="94" cy="67" r="3.5"/><circle cx="110" cy="67" r="3.5"/><circle cx="126" cy="67" r="3.5"/>
+              <circle cx="142" cy="67" r="3.5"/><circle cx="158" cy="67" r="3.5"/><circle cx="174" cy="67" r="3.5"/>
+              <circle cx="190" cy="67" r="3.5"/><circle cx="206" cy="67" r="3.5"/>
+            </g>
+            <rect class="acc" x="76" y="102" width="38" height="6" rx="3"/>
+            <rect class="acc" x="119" y="102" width="38" height="6" rx="3"/>
+            <rect class="acc" x="162" y="102" width="38" height="6" rx="3"/>
+            <rect class="dim" x="205" y="102" width="39" height="6" rx="3"/>
+          </svg>
+        </div></div>
+        <div class="project-body">
+          <h3>LOCKBOX</h3>
+          <p class="project-desc">Built a Python password generator and analyzer with separate modules for generation, analysis, and user interaction. I made it to practice modular programming and input handling, and to start thinking about what makes a password weak or strong.</p>
+          <ul class="tags"><li class="tag">Python</li><li class="tag">Modular programming</li><li class="tag">Input handling</li><li class="tag">Password generation</li><li class="tag">Password analysis</li></ul>
+          <p class="project-note">A learning project, not a production security tool.</p>
+          <div class="project-actions">
+            <a class="btn btn--ghost btn--sm" href="https://github.com/ktndrvlnzl/lockbox" target="_blank" rel="noopener">
+              <svg class="i" aria-hidden="true"><use href="#i-github"/></svg>GitHub
+            </a>
+          </div>
+        </div>
+      </article>
+
       <!-- Project 1: Calcifier -->
-      <article class="project" data-reveal>
+      <article class="project" data-reveal style="--d:90ms">
         <div class="preview" aria-hidden="true">
           <!-- Illustration. Swap this whole .preview block for <img src="calcifier.png" alt="..."> to use a real screenshot. -->
           <svg viewBox="0 0 320 168" preserveAspectRatio="xMidYMid slice">
@@ -721,7 +764,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.12;letter
         </div>
         <div class="project-body">
           <h3>CALCIFIER</h3>
-          <p class="project-desc">A simple calculator project built to practice programming logic and create a clean, functional interface.</p>
+          <p class="project-desc">Built a browser-based calculator to practice JavaScript logic, event handling, and responsive interface design.</p>
           <ul class="tags"><li class="tag">HTML</li><li class="tag">CSS</li><li class="tag">JavaScript</li></ul>
           <div class="project-actions">
             <a class="btn btn--primary btn--sm" href="https://calcifier.netlify.app/" target="_blank" rel="noopener">Live Demo
@@ -733,7 +776,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.12;letter
       </article>
 
       <!-- Project 2: Donezo -->
-      <article class="project" data-reveal style="--d:90ms">
+      <article class="project" data-reveal>
         <div class="preview" aria-hidden="true">
           <svg viewBox="0 0 320 168" preserveAspectRatio="xMidYMid slice">
             <rect class="panel" x="70" y="12" width="180" height="144" rx="12"/>
@@ -753,7 +796,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.12;letter
         </div>
         <div class="project-body">
           <h3>DONEZO</h3>
-          <p class="project-desc">A to-do application designed to organize tasks with local storage, calendar functionality, and dark mode.</p>
+          <p class="project-desc">Built a browser-based to-do app with calendar functionality and dark mode. Made to practice JavaScript and browser storage, using local storage to keep tasks saved between sessions.</p>
           <ul class="tags"><li class="tag">HTML</li><li class="tag">CSS</li><li class="tag">JavaScript</li></ul>
           <div class="project-actions">
             <a class="btn btn--primary btn--sm" href="https://ktndrvlnzl.github.io/donezo/" target="_blank" rel="noopener">Live Demo
@@ -765,7 +808,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.12;letter
       </article>
 
       <!-- Project 3: Clock It! -->
-      <article class="project" data-reveal>
+      <article class="project" data-reveal style="--d:90ms">
         <div class="preview" aria-hidden="true">
           <svg viewBox="0 0 320 168" preserveAspectRatio="xMidYMid slice">
             <circle class="stroke" cx="160" cy="84" r="54" stroke-width="7"/>
@@ -775,7 +818,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.12;letter
         </div>
         <div class="project-body">
           <h3>CLOCK IT!</h3>
-          <p class="project-desc">A Pomodoro timer built with Python and Tkinter, using JSON for data storage.</p>
+          <p class="project-desc">Built a Pomodoro timer with work and break intervals in Python and Tkinter. Made to practice building a desktop interface, using JSON to store app data and no external libraries.</p>
           <ul class="tags"><li class="tag">Python</li><li class="tag">Tkinter</li><li class="tag">JSON</li></ul>
           <div class="project-actions">
             <a class="btn btn--ghost btn--sm" href="https://github.com/ktndrvlnzl/clock-it-" target="_blank" rel="noopener">
@@ -785,35 +828,52 @@ h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.12;letter
         </div>
       </article>
 
-      <!-- Project 4: Lockbox -->
-      <article class="project" data-reveal style="--d:90ms">
-        <div class="preview" aria-hidden="true">
-          <svg viewBox="0 0 320 168" preserveAspectRatio="xMidYMid slice">
-            <rect class="panel" x="60" y="34" width="200" height="100" rx="12"/>
-            <rect class="dim" x="76" y="50" width="168" height="34" rx="8"/>
-            <g fill="#EAEAEA">
-              <circle cx="94" cy="67" r="3.5"/><circle cx="110" cy="67" r="3.5"/><circle cx="126" cy="67" r="3.5"/>
-              <circle cx="142" cy="67" r="3.5"/><circle cx="158" cy="67" r="3.5"/><circle cx="174" cy="67" r="3.5"/>
-              <circle cx="190" cy="67" r="3.5"/><circle cx="206" cy="67" r="3.5"/>
-            </g>
-            <rect class="acc" x="76" y="102" width="38" height="6" rx="3"/>
-            <rect class="acc" x="119" y="102" width="38" height="6" rx="3"/>
-            <rect class="acc" x="162" y="102" width="38" height="6" rx="3"/>
-            <rect class="dim" x="205" y="102" width="39" height="6" rx="3"/>
-          </svg>
-        </div>
-        <div class="project-body">
-          <h3>LOCKBOX</h3>
-          <p class="project-desc">A Python password generator and analyzer built with separate modules for generation, analysis, and user interaction.</p>
-          <ul class="tags"><li class="tag">Python</li></ul>
-          <div class="project-actions">
-            <a class="btn btn--ghost btn--sm" href="https://github.com/ktndrvlnzl/lockbox" target="_blank" rel="noopener">
-              <svg class="i" aria-hidden="true"><use href="#i-github"/></svg>GitHub
-            </a>
-          </div>
-        </div>
-      </article>
+    </div>
+  </div>
+</section>
 
+<!-- ======================= SKILLS ======================= -->
+<section class="section" id="skills">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <h2>Skills</h2>
+      <p>Highlighted tags are what I use most. Dashed tags are what I'm still learning.</p>
+    </div>
+    <div class="skills-grid">
+      <article class="skill-panel" data-reveal>
+        <h3>Core</h3>
+        <p>What I use most in my projects.</p>
+        <ul class="tags">
+          <li class="tag tag--using">Python</li>
+          <li class="tag tag--using">HTML</li>
+          <li class="tag tag--using">CSS</li>
+          <li class="tag tag--using">JavaScript</li>
+          <li class="tag tag--using">Git</li>
+          <li class="tag tag--using">GitHub</li>
+        </ul>
+      </article>
+      <article class="skill-panel" data-reveal style="--d:80ms">
+        <h3>Familiar</h3>
+        <p>Used in a few projects, still getting comfortable.</p>
+        <ul class="tags">
+          <li class="tag tag--familiar">Tkinter</li>
+          <li class="tag tag--familiar">JSON</li>
+        </ul>
+      </article>
+      <article class="skill-panel" data-reveal style="--d:160ms">
+        <h3>Currently Learning</h3>
+        <p>What I'm working on next.</p>
+        <ul class="tags">
+          <li class="tag tag--learning">Linux</li>
+          <li class="tag tag--learning">Networking</li>
+          <li class="tag tag--learning">C</li>
+          <li class="tag tag--learning">SQL</li>
+          <li class="tag tag--learning">Bash</li>
+          <li class="tag tag--learning">Data Structures and Algorithms</li>
+          <li class="tag tag--learning">Cybersecurity</li>
+          <li class="tag tag--learning">Web Security</li>
+        </ul>
+      </article>
     </div>
   </div>
 </section>
@@ -828,26 +888,72 @@ h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.12;letter
     <div class="services-grid">
       <article class="service" data-reveal>
         <h3>Simple Websites</h3>
-        <p>Personal pages, landing pages, portfolios, and small web projects.</p>
+        <p>Basic personal websites, portfolios, landing pages, and small web projects using HTML, CSS, and JavaScript.</p>
       </article>
       <article class="service" data-reveal style="--d:80ms">
         <h3>Python Projects</h3>
-        <p>Small utilities, calculators, automation scripts, and beginner-level applications.</p>
+        <p>Small utilities, calculators, beginner applications, and simple scripts.</p>
       </article>
       <article class="service" data-reveal>
         <h3>Writing &amp; Proofreading</h3>
-        <p>Captions, short-form copy, proofreading, editing, and content cleanup.</p>
+        <p>Grammar checking, proofreading, captions, short-form writing, and general editing.</p>
       </article>
       <article class="service" data-reveal style="--d:80ms">
         <h3>Simple Design</h3>
-        <p>Posters, social media graphics, school materials, and basic layouts.</p>
+        <p>Basic posters, social media graphics, school materials, and simple visual content.</p>
+      </article>
+    </div>
+    <div class="services-cta" data-reveal>
+      <p>Have a small project in mind?</p>
+      <a class="btn btn--ghost" href="#contact">Get In Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= LEADERSHIP ======================= -->
+<section class="section" id="leadership">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <h2>Leadership &amp; Experience</h2>
+      <p>Experience that built my communication, leadership, writing, and teamwork skills.</p>
+    </div>
+    <div class="lead-grid">
+      <article class="lead-card" data-reveal>
+        <h3>Student Leadership</h3>
+        <ul>
+          <li>President, SADAC</li>
+          <li>Student Government Representative and Publication Committee Co-chair</li>
+          <li>Vice President, MAPEH Club</li>
+          <li>Head, Youth Development Committee, Hi-Y</li>
+        </ul>
+        <p class="lead-builds">Leadership, organization, teamwork</p>
+      </article>
+      <article class="lead-card" data-reveal style="--d:80ms">
+        <h3>Campus Journalism</h3>
+        <ul>
+          <li>Copy reader</li>
+          <li>Headline writer</li>
+          <li>Secretary (Kalihim), school publication</li>
+          <li>Proofreading and editing</li>
+        </ul>
+        <p class="lead-builds">Writing, editing</p>
+      </article>
+      <article class="lead-card" data-reveal style="--d:160ms">
+        <h3>Communication</h3>
+        <ul>
+          <li>Public speaking</li>
+          <li>Debate</li>
+          <li>Presentations</li>
+          <li>Team collaboration</li>
+        </ul>
+        <p class="lead-builds">Public speaking, teamwork</p>
       </article>
     </div>
   </div>
 </section>
 
 <!-- ======================= WHERE I'M GOING ======================= -->
-<section class="section" id="journey">
+<section class="section section--compact section--lift" id="journey">
   <div class="container path-grid">
     <div class="path-intro" data-reveal>
       <h2>Where I'm Going</h2>
@@ -872,57 +978,18 @@ h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.12;letter
 </section>
 
 <!-- ======================= CAREER DIRECTION ======================= -->
-<section class="section section--lift" id="career">
+<section class="section section--compact" id="career">
   <div class="container">
     <div class="section-head" data-reveal>
       <h2>Career Direction</h2>
+      <p>Building toward a career in cybersecurity and security engineering.</p>
     </div>
     <ol class="career-steps" data-reveal>
       <li class="career-step"><h3>Computer Science</h3></li>
       <li class="career-step"><h3>Cybersecurity</h3></li>
       <li class="career-step"><h3>Security Engineering</h3></li>
-      <li class="career-step"><h3>Secure Systems &amp; Infrastructure</h3></li>
     </ol>
-    <p class="career-note" data-reveal>AI/ML is a secondary technical interest. I may use it in future cybersecurity projects, but it isn't my main career direction.</p>
-  </div>
-</section>
-
-<!-- ======================= LEADERSHIP ======================= -->
-<section class="section" id="leadership">
-  <div class="container">
-    <div class="section-head" data-reveal>
-      <h2>Leadership &amp; Experience</h2>
-      <p>Non-technical experience that shapes how I work with people and communicate ideas.</p>
-    </div>
-    <div class="lead-grid">
-      <article class="lead-card" data-reveal>
-        <h3>Student Leadership</h3>
-        <ul>
-          <li>President, SADAC</li>
-          <li>Grade 10 Representative and Publication Committee Co-chair, Student Government (SSLG)</li>
-          <li>Vice President, MAPEH Club</li>
-          <li>Head, Youth Development Committee, Hi-Y</li>
-        </ul>
-      </article>
-      <article class="lead-card" data-reveal style="--d:80ms">
-        <h3>Campus Journalism</h3>
-        <ul>
-          <li>Copy reader</li>
-          <li>Headline writer</li>
-          <li>Secretary (Kalihim), school publication</li>
-          <li>Proofreading and editing</li>
-        </ul>
-      </article>
-      <article class="lead-card" data-reveal style="--d:160ms">
-        <h3>Communication</h3>
-        <ul>
-          <li>Public speaking</li>
-          <li>Debate</li>
-          <li>Presentations</li>
-          <li>Team collaboration</li>
-        </ul>
-      </article>
-    </div>
+    <p class="career-note" data-reveal>AI/ML is a secondary interest I may explore in future cybersecurity projects.</p>
   </div>
 </section>
 
@@ -935,7 +1002,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.12;letter
         <p>My one-page resume has the full list of roles and projects.</p>
       </div>
       <!-- Keep Kate_Valenzuela_Resume.docx in the same folder as this file -->
-      <a class="btn btn--primary" href="Kate_Valenzuela_Resume.docx" download>Download Resume
+      <a class="btn btn--primary" href="Kate_Valenzuela_Resume.docx" download aria-label="Download Kate Valenzuela's resume (Word document)">Download Resume
         <svg class="i i-dl" aria-hidden="true"><use href="#i-dl"/></svg>
       </a>
     </div>
@@ -1060,7 +1127,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.12;letter
       var h = Math.max(0, Math.min(max, trigger - r.top - 8));
       route.style.setProperty('--fill', h + 'px');
       stops.forEach(function (s) {
-        var y = s.getBoundingClientRect().top + 33;
+        var y = s.getBoundingClientRect().top + 22;
         s.classList.toggle('is-reached', y < trigger);
       });
     }
@@ -1070,6 +1137,17 @@ h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.12;letter
     updateRoute();
     window.addEventListener('scroll', requestUpdate, { passive: true });
     window.addEventListener('resize', requestUpdate);
+  }
+
+  /* Project cards: soft light that follows the pointer */
+  if (window.matchMedia('(hover: hover)').matches && !reduce) {
+    document.querySelectorAll('.project').forEach(function (card) {
+      card.addEventListener('pointermove', function (e) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
   }
 
   /* Copy email */
