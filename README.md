@@ -2,20 +2,20 @@
 
 My personal portfolio website. I'm a student developer from the Philippines working toward a future in Security Engineering, and this site collects the projects I've built while learning.
 
-**Live site:** https://kate-valenzuela-portfolio.vercel.app/
+**Live site:** [https://ktndrvlnzl.github.io/kate-valenzuela-portfolio/](https://kate-valenzuela-portfolio.vercel.app/)
 
 ## About the site
 
 The site is a single page with these sections:
 
-- **Hero:** introduction and links to my work and contact details
-- **About Me:** who I am, my school, and my goals
-- **Skills:** what I'm currently using and what I'm currently learning
+- **Hero:** introduction, what I can help with, and links to my work and contact details
+- **About Me:** who I am and where I'm headed
 - **Things I've Built:** my projects, with links to live demos and code
+- **Skills:** core skills, skills I'm familiar with, and what I'm currently learning
 - **What I Can Help With:** small, realistic things I can help with
-- **Where I'm Going:** my learning path toward Security Engineering
-- **Career Direction:** Computer Science, then Cybersecurity, then Security Engineering
 - **Leadership & Experience:** student leadership, campus journalism, and communication
+- **Where I'm Going:** my learning path
+- **Career Direction:** Computer Science, then Cybersecurity, then Security Engineering
 - **Resume:** a downloadable copy of my resume
 - **Contact:** GitHub and email
 
